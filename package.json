@@ -1,0 +1,28 @@
+{
+  "name": "web-window",
+  "version": "0.0.1",
+  "description": "A wrapper of BrowserWindow from Electron, for easy CSS / JS Injection.",
+  "author": "ben181231 <ben181231@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ben181231/web-window.git"
+  },
+  "keywords": [
+    "electron-app",
+    "browser",
+    "js",
+    "css",
+    "injection"
+  ],
+  "dependencies": {
+    "clean-css": "^3.4.1",
+    "uglify-js": "^2.4.24"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.32.3",
+    "electron-packager": "^5.0.0"
+  }
+}
