@@ -19,7 +19,7 @@
   ],
   "devDependencies": {
     "electron-prebuilt": "^0.31.0",
-    "web-window": "^0.0.1"
+    "web-window": "^0.0"
   },
   "scripts": {
     "start": "electron ."
