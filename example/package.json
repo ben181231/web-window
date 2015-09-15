@@ -1,0 +1,27 @@
+{
+  "name": "web-window-example",
+  "version": "0.0.1",
+  "description": "An example app using Web Window",
+  "author": "ben181231 <ben181231@gmail.com>",
+  "license": "MIT",
+  "main": "app.js",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ben181231/web-window.git"
+  },
+  "keywords": [
+    "electron-app",
+    "browser",
+    "js",
+    "css",
+    "injection"
+  ],
+  "devDependencies": {
+    "electron-prebuilt": "^0.31.0",
+    "web-window": "^0.0.1"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
