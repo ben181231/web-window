@@ -1,6 +1,6 @@
 {
   "name": "web-window",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A wrapper of BrowserWindow from Electron, for easy CSS / JS Injection.",
   "author": "ben181231 <ben181231@gmail.com>",
   "license": "MIT",
