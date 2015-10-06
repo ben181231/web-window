@@ -134,7 +134,8 @@ var Creator = function(_config) {
         Available handlers:
             - domReady(webContent)
             - finishLoading(webContent)
-            - willNavigate(webContent, url, isBlocked)
+            - willNavigate(webContent, url)
+            - shouldNavigate(webContent, url)
     */
 
     config.jsInjectors = defaultJsInjectors(config).concat(config.jsInjectors);
@@ -202,13 +203,19 @@ var Creator = function(_config) {
         console.log('[Will navigate]', url);
 
         if (config.multiOrigin !== true && URL.parse(url).hostname !== lockedOrigin) {
-            console.log('[Block navigation]', url);
-            e.preventDefault();
             isBlocked = true;
         }
+        else if (config.eventHandlers.shouldNavigate) {
+            isBlocked = (config.eventHandlers.shouldNavigate(e.sender, url) === true);
+            console.log('[Should navigate]', !isBlocked, url);
+        }
 
-        if (config.eventHandlers.willNavigate) {
-            config.eventHandlers.willNavigate(e.sender, url, isBlocked);
+        if (isBlocked) {
+            console.log('[Block navigation]', url);
+            e.preventDefault();
+        }
+        else if (config.eventHandlers.willNavigate) {
+            config.eventHandlers.willNavigate(e.sender, url);
         }
     });
 

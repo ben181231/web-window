@@ -26,8 +26,12 @@ app.on('ready', function () {
             finishLoading: function(webContent) {
                 // TODO: do something
             },
-            willNavigate: function(webContent, url, isBlocked) {
+            willNavigate: function(webContent, url) {
                 // TODO: do something
+            },
+            shouldNavigate: function(webContent, url) {
+                // TODO: do some checking
+                return Math.random() > 0.5;
             }
         }
     });
