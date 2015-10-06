@@ -1,4 +1,6 @@
 var BrowserWindow = require('browser-window'),
+    dialog = require('dialog'),
+    shell = require('shell'),
     URL = require('url'),
     fs = require('fs'),
     path = require('path');
@@ -120,16 +122,17 @@ var Creator = function(_config) {
     }
 
     // set default values
-    config['min-width']     = config['min-width']   || 800;
-    config['min-height']    = config['min-height']  || 600;
-    config.width            = config.width          || 1080;
-    config.height           = config.height         || 720;
-    config.url              = config.url            || 'http://www.google.com';
-    config.multiOrigin      = config.multiOrigin    || false;
-    config.requireMenu      = config.requireMenu    || false;
-    config.jsInjectors      = config.jsInjectors    || [];
-    config.cssInjectors     = config.cssInjectors   || [];
-    config.eventHandlers    = config.eventHandlers  || {};
+    config['min-width']         = config['min-width']           || 800;
+    config['min-height']        = config['min-height']          || 600;
+    config.width                = config.width                  || 1080;
+    config.height               = config.height                 || 720;
+    config.url                  = config.url                    || 'http://www.google.com';
+    config.multiOrigin          = config.multiOrigin            || false;
+    config.requireMenu          = config.requireMenu            || false;
+    config.allowOpenExternally  = config.allowOpenExternally    || false;
+    config.jsInjectors          = config.jsInjectors            || [];
+    config.cssInjectors         = config.cssInjectors           || [];
+    config.eventHandlers        = config.eventHandlers          || {};
     /*
         Available handlers:
             - domReady(webContent)
@@ -193,8 +196,27 @@ var Creator = function(_config) {
     });
 
     newWindow.webContents.on('new-window', function(e, url) {
-        // TODO: handle multiple windows
-        console.log('[Block new window]', url);
+        if (config.allowOpenExternally && url) {
+            dialog.showMessageBox(newWindow, {
+                type: 'info',
+                buttons: ['Cancel', 'Open'],
+                title: 'Open Externally',
+                message: 'Do you allow the following URL open externally?',
+                detail: url
+            }, function(response) {
+                if (response === 1) {
+                    console.log('[Open externally]', url);
+                    shell.openExternal(url);
+                }
+                else {
+                    console.log('[Block new window]', url);
+                }
+            });
+        }
+        else {
+            console.log('[Block new window]', url);
+        }
+
         e.preventDefault();
     });
 

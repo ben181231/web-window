@@ -1,7 +1,6 @@
 'use strict';
 
 var app = require('app'),
-    dialog = require('dialog'),
     WebWindow = require('web-window'),
     JsInjector = WebWindow.JsInjector;
 
@@ -16,6 +15,7 @@ app.on('ready', function () {
         url: 'https://github.com',
         multiOrigin: false,
         requireMenu: true,
+        allowOpenExternally: true,
         jsInjectors: [
             // new JsInjector(/someRegex/, 'file-path')
         ],
