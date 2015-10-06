@@ -18,10 +18,10 @@
     "injection"
   ],
   "devDependencies": {
-    "electron-prebuilt": "^0.31.0",
-    "web-window": "^0.0"
+    "electron-prebuilt": "^0.33.0",
+    "web-window": "file:.."
   },
   "scripts": {
-    "start": "electron ."
+    "start": "npm install .. && electron ."
   }
 }

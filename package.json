@@ -22,7 +22,7 @@
     "uglify-js": "^2.4.24"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.32.3",
+    "electron-prebuilt": "^0.33.6",
     "electron-packager": "^5.0.0"
   }
 }
